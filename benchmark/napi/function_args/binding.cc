@@ -14,6 +14,7 @@ using v8::Array;
 using v8::ArrayBufferView;
 using v8::ArrayBuffer;
 using v8::FunctionCallbackInfo;
+using v8::NewStringType;
 
 void CallWithString(const FunctionCallbackInfo<Value>& args) {
   assert(args.Length() == 1 && args[0]->IsString());
@@ -55,7 +56,7 @@ void CallWithObject(const FunctionCallbackInfo<Value>& args) {
     Local<Object> obj = args[0].As<Object>();
 
     MaybeLocal<String> map_key = String::NewFromUtf8(isolate,
-        "map", v8::NewStringType::kNormal);
+        "map", NewStringType::kNormal);
     assert(!map_key.IsEmpty());
     MaybeLocal<Value> map_maybe = obj->Get(context,
         map_key.ToLocalChecked());
@@ -64,7 +65,7 @@ void CallWithObject(const FunctionCallbackInfo<Value>& args) {
     map = map_maybe.ToLocalChecked();
 
     MaybeLocal<String> operand_key = String::NewFromUtf8(isolate,
-        "operand", v8::NewStringType::kNormal);
+        "operand", NewStringType::kNormal);
     assert(!operand_key.IsEmpty());
     MaybeLocal<Value> operand_maybe = obj->Get(context,
         operand_key.ToLocalChecked());
@@ -73,7 +74,7 @@ void CallWithObject(const FunctionCallbackInfo<Value>& args) {
     operand = operand_maybe.ToLocalChecked();
 
     MaybeLocal<String> data_key = String::NewFromUtf8(isolate,
-        "data", v8::NewStringType::kNormal);
+        "data", NewStringType::kNormal);
     assert(!data_key.IsEmpty());
     MaybeLocal<Value> data_maybe = obj->Get(context,
         data_key.ToLocalChecked());
@@ -82,7 +83,7 @@ void CallWithObject(const FunctionCallbackInfo<Value>& args) {
     data = data_maybe.ToLocalChecked();
 
     MaybeLocal<String> reduce_key = String::NewFromUtf8(isolate,
-        "reduce", v8::NewStringType::kNormal);
+        "reduce", NewStringType::kNormal);
     assert(!reduce_key.IsEmpty());
     MaybeLocal<Value> reduce_maybe = obj->Get(context,
         reduce_key.ToLocalChecked());
